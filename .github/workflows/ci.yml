@@ -13,8 +13,13 @@ jobs:
       - name: Get source code
         uses: actions/checkout@v4
 
-      - name: Display project files
-        run: ls -la
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-      - name: Test HTML file
-        run: test -f index.html
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate HTML
+        run: npx html-validate index.html
